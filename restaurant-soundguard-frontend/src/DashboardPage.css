@@ -1,0 +1,96 @@
+/* src/pages/DashboardPage.css */
+.dashboard {
+  padding: 2rem;
+  font-family: sans-serif;
+  background-color: #f4f7f9;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  color: #2c3e50;
+}
+
+.dashboard-header h2 {
+  color: #7f8c8d;
+}
+
+.dashboard-main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.realtime-panel, .chart-panel, .history-panel {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.history-panel {
+  grid-column: 1 / -1; /* Make history panel span full width */
+}
+
+.level-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin: 1rem auto;
+  color: white;
+  text-align: center;
+}
+
+.level-indicator.vert { background-color: #2ecc71; }
+.level-indicator.orange { background-color: #f39c12; }
+.level-indicator.rouge { background-color: #e74c3c; }
+
+.level-value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.level-text {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.chart-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    background-color: #ecf0f1;
+    border-radius: 4px;
+    color: #95a5a6;
+}
+/* Add these to src/pages/DashboardPage.css */
+
+.dashboard-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #555;
+}
+
+.dashboard-status.error {
+  color: #e74c3c;
+}
+
+.timestamp {
+    text-align: center;
+    margin-top: 1rem;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
