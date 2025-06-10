@@ -2,8 +2,8 @@
 
 const db = require('../config/db');
 
+// THIS IS THE MISSING CODE
 // Get the latest measurement for a specific restaurant
-// For simplicity, we'll hardcode the restaurant and main sensor for now.
 exports.getLatestMeasurement = (req, res) => {
   // This query uses the excellent view you created in your SQL file!
   const sql = `
@@ -31,5 +31,30 @@ exports.getLatestMeasurement = (req, res) => {
       return res.status(404).json({ message: "No measurement found for this restaurant." });
     }
     res.json(results[0]);
+  });
+};
+
+
+// Get measurements from the last 24 hours
+exports.get24HourHistory = (req, res) => {
+  // For now, we use the hardcoded sensor ID for 'CAPTEUR_SALLE_PRINCIPALE' which is 1
+  const sensorId = 1;
+
+  const sql = `
+    SELECT 
+        niveau_db,
+        timestamp_mesure
+    FROM mesures_sonores
+    WHERE capteur_id = ?
+      AND timestamp_mesure >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+    ORDER BY timestamp_mesure ASC;
+  `;
+
+  db.query(sql, [sensorId], (err, results) => {
+    if (err) {
+      console.error("Database query error:", err);
+      return res.status(500).json({ error: "Error fetching history data" });
+    }
+    res.json(results);
   });
 };
