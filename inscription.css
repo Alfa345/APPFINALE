@@ -4,30 +4,14 @@ body {
     flex-direction: column;
 }
 
-
 main.contenu-scrollable {
     position: absolute;
-    top: 130px; /* même que header */
-    bottom: 60px; /* même que footer */
+    top: 130px;
+    bottom: 60px;
     left: 0;
     right: 0;
     overflow-y: auto;
     padding: 20px;
-}
-
-.bouton-bas {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.formulaire-connexion {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
 }
 
 .champ {
@@ -52,33 +36,27 @@ main.contenu-scrollable {
     text-align: center;
 }
 
-.inscription {
-    margin-top: 5px;
-    padding: 12px 24px;
-    background-color: rgba(242, 144, 102, 0.8);
-    color: white;
-    font-size: 1em;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.champ-obligatoire {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.connexion {
-    margin-top: 15px;
-    font-size: 0.9em;
-    color: #ee9c72;
-    font-family: 'DM Serif Display', cursive;
-    text-align: center;
-    text-decoration: none;
+.champ-obligatoire .etoile {
+    color: red;
+    font-size: 1.2em;
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .conditions-general {
     display: flex;
-    align-items: center; /* pour aligner verticalement */
-    justify-content: center; /* pour centrer horizontalement */
-    gap: 8px; /* espace entre le carré et le texte */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     margin-top: 10px;
 }
 
@@ -117,6 +95,28 @@ main.contenu-scrollable {
     transform: rotate(45deg);
 }
 
+.inscription {
+    margin-top: 5px;
+    padding: 12px 24px;
+    background-color: rgba(242, 144, 102, 0.8);
+    color: white;
+    font-size: 1em;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.connexion {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #ee9c72;
+    font-family: 'DM Serif Display', cursive;
+    text-align: center;
+    text-decoration: none;
+}
+
 .message-area {
     padding: 15px;
     margin-bottom: 20px;
@@ -143,18 +143,4 @@ main.contenu-scrollable {
     margin-bottom: 5px;
 }
 
-.champ-obligatoire {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.champ-obligatoire .etoile {
-    color: red;
-    font-size: 1.2em;
-    position: absolute;
-    left: -15px; /* ajuste si nécessaire */
-    top: 50%;
-    transform: translateY(-50%);
-}

@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <main class="contenu-scrollable" >
-    <form method="POST" action="inscription.php" class="formulaire-inscription">
+    <form method="POST" action="inscription.php">
         <input type="hidden" name="langue" id="langue">
         <div class="champ">
             <br>
@@ -121,18 +121,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="champ-obligatoire">
                 <span class="etoile" style="margin-left: 30px" >*</span>
-                <div class="password-container">
-                    <input style="margin-left: 30px" type="password" id="mdp" name="mdp" placeholder="Entrez votre mot de passe" required>
-                    <img src="images/eye-closed.png" alt="Afficher mot de passe" class="toggle-password" onclick="togglePasswordVisibility('mdp')">
-                </div>
+                <input style="margin-left: 30px" type="password" id="mdp" name="mdp" placeholder="Entrez votre mot de passe" required>
+                <img src="images/eye-closed.png" alt="Afficher mot de passe" class="toggle-password" onclick="togglePasswordVisibility('mdp')">
             </div>
 
             <div class="champ-obligatoire">
                 <span class="etoile" style="margin-left: 30px" >*</span>
-                <div class="password-container">
-                    <input style="margin-left: 30px" type="password" id="mdp-confirm" name="mdp_confirm" placeholder="Confirmez votre mot de passe" required>
-                    <img src="images/eye-closed.png" alt="Afficher mot de passe" class="toggle-password" onclick="togglePasswordVisibility('mdp-confirm')">
-                </div>
+                <input style="margin-left: 30px" type="password" id="mdp-confirm" name="mdp_confirm" placeholder="Confirmez votre mot de passe" required>
+                <img src="images/eye-closed.png" alt="Afficher mot de passe" onclick="togglePasswordVisibility('mdp-confirm')">
             </div>
         </div>
 
@@ -142,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label class="checkbox-container">
                     <input type="checkbox" id="mentions" name="mentions" required>
                     <span class="checkmark"></span>
-                    <span class="conditions" id="conditions-text">Accepter les conditions d'utilisations</span>
+                    <span id="conditions-text">Accepter les conditions d'utilisations</span>
                 </label>
             </div>
         </div>
@@ -173,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="conditions-general">
         <div class="champ-obligatoire">
             <span class="etoile">*</span>
-            <span class="conditions"  id="champs">Ce champ est obligatoire</span>
+            <span id="champs">Ce champ est obligatoire</span>
         </div>
     </div>
 </main>
@@ -196,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.addEventListener("DOMContentLoaded", function () {
         const userLang = localStorage.getItem("langue") || "fr";
         const script = document.createElement('script');
-        script.src = `https://www.google.com/recaptcha/api.js?hl=${userLang}`;
+        script.src = `https://www.google.com/recaptcha/api.js?hl=fr`;
         script.async = true;
         script.defer = true;
         document.body.appendChild(script);
