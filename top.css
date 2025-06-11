@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar-barre {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(0, 75, 128, 0.71);
+    z-index: 10;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'DM Serif Display', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.background-fixe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('images/fond-bateau.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.top-center {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    z-index: 10;
+}
+
+
+.top-center img {
+    width: 20px;
+    height: auto;
+}
+
+
+.logo-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-slogan {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #ee9c72;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+}
+
+.page-title {
+    margin-top: 10px;
+    font-size: 2em;
+    color: #2F4F2F;
+    font-family: 'DM Serif Display', serif;
+    text-align: center;
+}
+
