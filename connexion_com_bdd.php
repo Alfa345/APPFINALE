@@ -44,32 +44,43 @@ try {
 }
 
 // Lecture pendant 20 secondes
-$runForSeconds = new DateInterval("PT20S");
+$runForSeconds = new DateInterval("PT3600S");
 $endTime = (new DateTime())->add($runForSeconds);
 
 echoFlush("Waiting for {$runForSeconds->format('%S')} seconds to receive data on serial port...<br>");
 
-while (new DateTime() < $endTime) {
+$buffer = "";
 
-    $data = dio_read($serialPort, 5); // Bloquant
+while (new DateTime() < $endTime) {
+    // Lecture d'un petit bloc
+    $data = dio_read($serialPort, 5); // 16 caractères à la fois
 
     if ($data) {
-        echoFlush("Reçu brut : " . str_replace("\n", "<br>", "[" . $data . "]"));
+        $buffer .= $data;
 
-        // Nettoyage et extraction du float
-        if (preg_match('/([-+]?[0-9]*\.?[0-9]+)/', $data, $matches)) {
-            $value = floatval($matches[1]);
+        // Traitement des messages complets (terminés par ; ou \n ou \r)
+        while (preg_match('/^([^;\r\n]{1,10})[;\r\n]/', $buffer, $matches)) {
+            $message = $matches[1];
+            $buffer = substr($buffer, strlen($matches[0])); // Supprime le message traité
 
-            // Insertion dans la base
-            $stmt = $pdo->prepare("INSERT INTO Capteur_Son (valeur, temps) VALUES (?, NOW())");
-            $stmt->execute([$value]);
+            echoFlush("Message complet : [$message]");
 
-            echoFlush("Inséré en BDD : {$value}<br>");
-        } else {
-            echoFlush("Aucune valeur numérique détectée.<br>");
+            // Extraction d'une valeur numérique
+            if (preg_match('/([-+]?[0-9]*\.?[0-9]+)/', $message, $m)) {
+                $value = floatval($m[1]);
+
+                // Insertion dans la BDD
+                $stmt = $pdo->prepare("INSERT INTO Capteur_Son (valeur, temps) VALUES (?, NOW())");
+                $stmt->execute([$value]);
+
+                echoFlush("Inséré en BDD : $value<br>");
+            } else {
+                echoFlush("Pas de valeur numérique détectée dans : [$message]<br>");
+            }
         }
     }
 }
+
 
 dio_close($serialPort);
 ?>
